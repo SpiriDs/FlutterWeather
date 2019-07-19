@@ -8,7 +8,7 @@ class Location {
     try {
       Position position = await Geolocator()
           .getCurrentPosition(desiredAccuracy: LocationAccuracy.low);
-      print(position);
+
       latitude = position.latitude;
       longitude = position.longitude;
     } catch (e) {
@@ -16,3 +16,10 @@ class Location {
     }
   }
 }
+
+//double temperature = decodedData['main']['temp'];
+//int condition = decodedData['weather'][0]['id'];
+//String cityName = decodedData['name'];
+//    print(cityName);
+//    print(temperature);
+//    print(condition);
