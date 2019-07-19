@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:clima/services/location.dart';
 import 'package:clima/services/networking.dart';
+import 'location_screen.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 const apiKey = '769a0d77b7fd413474d9311e985e1923';
 
@@ -12,6 +14,7 @@ class LoadingScreen extends StatefulWidget {
 class _LoadingScreenState extends State<LoadingScreen> {
   double latitude;
   double longitude;
+  String unit = 'metric';
   @override
   void initState() {
     super.initState();
@@ -25,13 +28,29 @@ class _LoadingScreenState extends State<LoadingScreen> {
     longitude = location.longitude;
 
     NetworkHelper networkHelper = NetworkHelper(
-        'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey');
+        'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey&units=$unit');
     var weatherData = await networkHelper.getData();
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) {
+        return LocationScreen(
+          locationWeather: weatherData,
+        );
+      }),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     //getLocation(); //Delete this line of code. it is just for testing
-    return Scaffold();
+    return Scaffold(
+      body: Center(
+        child: SpinKitDoubleBounce(
+          color: Colors.white,
+          size: 100,
+        ),
+      ),
+    );
   }
 }
