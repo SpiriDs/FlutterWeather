@@ -99,6 +99,7 @@ class _LocationScreenState extends State<LocationScreen> {
               Padding(
                 padding: EdgeInsets.only(left: 15.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
                       '$temperature°',
@@ -106,8 +107,6 @@ class _LocationScreenState extends State<LocationScreen> {
                     ),
                     Text(
                       weatherIcon,
-                      //textAlign: TextAlign.left,
-                      //softWrap: true,
                       style: kConditionTextStyle,
                     ),
                   ],
@@ -118,7 +117,6 @@ class _LocationScreenState extends State<LocationScreen> {
                 child: Text(
                   ' $weatherMessage in $cityName!',
                   textAlign: TextAlign.center,
-                  softWrap: true,
                   style: kMessageTextStyle,
                 ),
               ),
